@@ -20,12 +20,14 @@ class ReviewModel:
         reader = self.reader
         reader.context = os.path.join(basedir, 'data')
         reader.fname = 'ratings.train.txt'
-        review = pd.read_csv(os.path.join(reader.context, reader.fname))
+        reader.new_file()
+        review = reader.csv_to_dframe()
         # review = pd.read_csv(reader.new_file(), encoding='UTF-8', delimiter =',')
         # review = reader.csv_to_dframe()
-        print(review)
+        print(f'{review.head()}')
+        return review
     
 if __name__ == '__main__':
     model = ReviewModel()
-    # model.hook_process()
-    model.get_review()
+    model.hook_process()
+    # model.get_review()
